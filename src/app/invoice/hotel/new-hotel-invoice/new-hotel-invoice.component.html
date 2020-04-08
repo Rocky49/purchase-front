@@ -1,0 +1,280 @@
+<div class="container-fluid">
+    <legend class="bg-light">
+        Hotel Invoice Details
+    </legend>
+    <form #formSubmit="ngForm">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Hotel Mode</ng-template>
+                <mat-form-field class="form-width">
+                    <mat-label>Purchase Employee Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let employee of employees" 
+                        [value]= "employee"
+                        name = "employee">
+                            {{employee}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Company Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let company of companies" 
+                        [value]= "company"
+                        name = "company">
+                            {{company}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Division Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let division of divisions" 
+                        [value]= "division"
+                        name = "division">
+                            {{division}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Traveler Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Branch Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let branch of branches" 
+                        [value]= "branch"
+                        name = "branchName">
+                            {{branch}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Department Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let department of departments" 
+                        [value]= "department"
+                        name = "departmentName">
+                            {{department}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>    
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Hotel Details</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Select Vendor">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="bookingDate"
+                    [matDatepicker]="bookingDatePicker"
+                    (click)="bookingDatePicker.open()"
+                    required
+                    placeholder="Booking Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #bookingDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="checkInDate"
+                    [matDatepicker]="checkInDatePicker"
+                    (click)="checkInDatePicker.open()"
+                    required
+                    placeholder="Check-In Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkInDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="checkOutDate"
+                    [matDatepicker]="checkOutDatePicker"
+                    (click)="checkOutDatePicker.open()"
+                    required
+                    placeholder="Check-Out Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #checkOutDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Location">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Approval">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Invoice Details</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Invoice No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="invoiceDate"
+                    [matDatepicker]="invoiceDatePicker"
+                    (click)="invoiceDatePicker.open()"
+                    required
+                    placeholder="Invoice Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #invoiceDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Invoice Amount (a)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Tax Amount (b)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Total Amount (c = a + b)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Credit Note No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Credit Note Amount (d)">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Payment Details</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Total payable ( c - d )">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Cheque No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="chequeDate"
+                    [matDatepicker]="chequeDatePicker"
+                    (click)="chequeDatePicker.open()"
+                    required
+                    placeholder="Cheque Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #chequeDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Cheque Amount">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="receivedDate"
+                    [matDatepicker]="receivedDatePicker"
+                    (click)="receivedDatePicker.open()"
+                    required
+                    placeholder="Received On">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #receivedDatePicker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Status</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Remark">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="chequeDispatchedDate"
+                    [matDatepicker]="chequeDispatchedDatePicker"
+                    (onfocus)="chequeDispatchedDatePicker.open()"
+                    (click)="chequeDispatchedDatePicker.open()"
+                    required
+                    placeholder="Cheque Dispatched Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #chequeDispatchedDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Status</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let state of status" 
+                        [value]= "state"
+                        name = "status">
+                            {{state}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    color="primary"
+                    >
+                        Finish
+                    </button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </form>
+</div>                  

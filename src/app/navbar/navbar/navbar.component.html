@@ -1,0 +1,29 @@
+<button type="button" class="menu-toggle rounded" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="sidebar-wrapper">
+    <i *ngIf="isCollapsed" class="fa fa-bars"></i>
+    <i *ngIf="!isCollapsed" class="fa fa-times" ></i>
+</button>
+<nav>
+    <ul id="sidebar-wrapper" [ngbCollapse]="isCollapsed" class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" ><img class="img-size" src="assets/images/logo-sidenav.png" alt="gold's gym logo">Gold's Gym</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/remitter"><p class="text-field">Add Remitter</p></a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/beneficiary"><p class="text-field">Add Remitter</p></a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/new-form"><p class="text-field">Add Remitter</p></a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/records"><p class="text-field">Add Remitter</p></a>
+        </li>
+        <li *ngIf="role === 'Admin'" class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/register"><p class="text-field">Add Remitter</p></a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" routerLinkActive="active current" routerLink="/"><p class="text-field">Add Remitter</p></a>
+        </li>
+    </ul>
+</nav>

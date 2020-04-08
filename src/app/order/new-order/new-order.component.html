@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <legend class="bg-light">
+        Order Details
+    </legend>
+    <form #formSubmit="ngForm">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Order Details</ng-template>
+                <mat-form-field class="form-width">
+                        <input matInput
+                        required
+                        placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>    
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Select Vendor & Location</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Subject</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Company Name">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    color="primary">
+                        Finish
+                    </button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+.form-width {
+    width: 90%;
+}
+
+.next-button {
+    background: #607d8b;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 1px;
+    margin: 10px;
+}
+
+.prev-button {
+    background: #ffc107;
+    position: absolute;
+    right: 70px;
+    margin: 10px;
+}

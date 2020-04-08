@@ -1,0 +1,315 @@
+<div class="container-fluid">
+    <legend class="bg-light">
+        Travel Invoice Details
+    </legend>
+    <form #formSubmit="ngForm">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Traveler Details</ng-template>
+                <mat-form-field class="form-width">
+                    <mat-label>Purchase Employee Name</mat-label>
+                    <mat-select required name = "employees">
+                        <mat-option *ngFor="let employee of employees" 
+                        name = "employee"
+                        [value] = "employee.employeeName"
+                        (click) = "setEmployee(employee)">
+                            {{employee.employeeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Company Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let company of companies" 
+                        name = "company"
+                        [value] = "company"
+                        (click) = "setCompany(company)">
+                            {{company.companyName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Division Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let division of divisions" 
+                        [value]= "division"
+                        [(ngModel)] = "travelInvoiceObj.divisionNameFk"
+                        name = "division">
+                            {{division.divisionName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name = "travelerName"
+                    required
+                    [(ngModel)] = "travelInvoiceObj.travelerName"
+                    placeholder="Traveler Name">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Branch Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let branch of branches" 
+                        [value]="branch"
+                        [(ngModel)] = "travelInvoiceObj.branchNameFk"
+                        name = "branchName">
+                            {{branch.clubName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Department Name</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let department of departments" 
+                        [value]= "department"
+                        [(ngModel)] = "travelInvoiceObj.departmentFk"
+                        name = "departmentName">
+                            {{department.departmentName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>    
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Travel Details</ng-template>
+                <mat-form-field class="form-width">
+                    <mat-label>Sector</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let sector of sectors" 
+                        [value]= "sector"
+                        [(ngModel)] = "travelInvoiceObj.sector"
+                        name = "sector">
+                            {{sector}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Mode of Travel</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let travelMode of travelModes" 
+                        [value]= "travelMode"
+                        [(ngModel)] = "travelInvoiceObj.modeOfTraveling"
+                        name = "travelMode">
+                            {{travelMode}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="bookingDate"
+                    [matDatepicker]="bookingDatePicker"
+                    (onFocus)="bookingDatePicker.open()"
+                    (click)="bookingDatePicker.open()"
+                    [(ngModel)] = "travelInvoiceObj.bookingDate"
+                    required
+                    placeholder="Booking Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #bookingDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="travelPeriodFromDate"
+                    [matDatepicker]="fromDatePicker"
+                    (click)="fromDatePicker.open()"
+                    [(ngModel)] = "travelInvoiceObj.travelPeriodFrom"
+                    required
+                    placeholder="Travel Period From">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #fromDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="travelPeriodToDate"
+                    [matDatepicker]="toDatePicker"
+                    (click)="toDatePicker.open()"
+                    required
+                    placeholder="Travel Period To">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #toDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Location">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Approval">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Invoice Details</ng-template>
+                <mat-form-field class="form-width">
+                <mat-label>Select Vendor</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let vendor of vendors" 
+                        [value]= "vendor"
+                        name = "vendor">
+                            {{vendor.companyName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Invoice No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="invoiceDate"
+                    [matDatepicker]="invoiceDatePicker"
+                    (click)="invoiceDatePicker.open()"
+                    required
+                    placeholder="Invoice Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #invoiceDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Invoice Amount (a)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Tax Amount (b)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Total Amount (c = a + b)">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Credit Note No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Credit Note Amount (d)">
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Payment Details</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Total payable ( c - d )">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Cheque No.">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="chequeDate"
+                    [matDatepicker]="chequeDatePicker"
+                    (click)="chequeDatePicker.open()"
+                    required
+                    placeholder="Cheque Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #chequeDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Cheque Amount">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="receivedDate"
+                    [matDatepicker]="receivedDatePicker"
+                    (click)="receivedDatePicker.open()"
+                    required
+                    placeholder="Received On">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #receivedDatePicker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    class="next-button"
+                    matStepperNext>
+                        Next
+                    </button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="firstFormGroup">
+                <ng-template matStepLabel>Status</ng-template>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    required
+                    placeholder="Remark">
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <input matInput
+                    name="chequeDispatchedDate"
+                    [matDatepicker]="chequeDispatchedDatePicker"
+                    (click)="chequeDispatchedDatePicker.open()"
+                    required
+                    placeholder="Cheque Dispatched Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #chequeDispatchedDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="form-width">
+                    <mat-label>Status</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let state of status" 
+                        [value]= "state"
+                        name = "status">
+                            {{state}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button 
+                    class="prev-button"
+                    matStepperPrevious>
+                        Prev
+                    </button>
+                    <button mat-raised-button
+                    color="primary">
+                        Finish
+                    </button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </form>
+</div>                  
